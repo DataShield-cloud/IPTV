@@ -7,170 +7,166 @@
 <meta name="description" content="Browse public IPTV playlists by country, language and category, and copy the link straight into your app.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#0A0E13;
-    --bg-2:#0F151C;
-    --panel: rgba(255,255,255,0.035);
-    --panel-solid:#121922;
+    --bg:#0A0A0C;
+    --surface:#151517;
+    --surface-2:#1D1D20;
     --border: rgba(255,255,255,0.09);
-    --border-hover: rgba(0,217,163,0.4);
-    --signal:#00D9A3;
-    --signal-dim: rgba(0,217,163,0.14);
-    --amber:#FFB347;
-    --text:#E9F1EE;
-    --text-dim:#8B9A96;
-    --radius:14px;
+    --border-hover: rgba(230,57,70,0.55);
+    --red:#E63946;
+    --red-dim: rgba(230,57,70,0.14);
+    --gold:#F2B705;
+    --text:#F5F5F7;
+    --text-dim:#9A9AA2;
+    --radius:12px;
   }
-  *{ box-sizing:border-box; margin:0; padding:0; }
-  body{
-    background:
-      radial-gradient(700px 500px at 85% -10%, rgba(0,217,163,0.08), transparent 60%),
-      radial-gradient(600px 400px at -10% 30%, rgba(255,179,71,0.05), transparent 60%),
-      var(--bg);
-    color:var(--text);
-    font-family:'Inter',sans-serif;
-    min-height:100vh;
-  }
-  h1,h2,h3{ font-family:'Sora',sans-serif; letter-spacing:-0.01em; }
-  .mono{ font-family:'JetBrains Mono',monospace; }
 
-  /* header */
+  html, body{
+    overflow-x: hidden;
+    background: var(--bg);
+    max-width: 100%;
+  }
+
+  *, *::before, *::after{ box-sizing:border-box; margin:0; padding:0; }
+
+  button, input{
+    font-family: inherit;
+    color: inherit;
+    background: none;
+    border: none;
+  }
+
+  body{
+    color: var(--text);
+    font-family:'Inter', sans-serif;
+    min-height:100vh;
+    background:
+      radial-gradient(600px 380px at 90% -8%, rgba(230,57,70,0.10), transparent 60%),
+      radial-gradient(500px 320px at -10% 25%, rgba(242,183,5,0.05), transparent 60%),
+      var(--bg);
+  }
+
+  .display{ font-family:'Bebas Neue', sans-serif; letter-spacing:0.02em; }
+  .mono{ font-family:'JetBrains Mono', monospace; }
+
+  /* ---------- header ---------- */
   header{
     position:sticky; top:0; z-index:40;
-    background: rgba(10,14,19,0.85);
+    background: rgba(10,10,12,0.9);
     backdrop-filter: blur(14px) saturate(140%);
     border-bottom:1px solid var(--border);
     padding: 16px clamp(16px,4vw,48px);
   }
-  .header-top{ display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; }
+  .header-top{ display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; }
   .brand{ display:flex; align-items:center; gap:10px; }
   .brand-mark{
-    width:34px; height:34px; border-radius:10px;
-    background: linear-gradient(150deg, var(--signal), #0A6C51);
+    width:34px; height:34px; border-radius:8px;
+    background: var(--red);
     display:flex; align-items:center; justify-content:center;
-    box-shadow: 0 6px 16px rgba(0,217,163,0.35);
+    box-shadow: 0 6px 16px rgba(230,57,70,0.4);
+    flex:none;
   }
   .brand-mark svg{ width:18px; height:18px; }
-  .brand-name{ font-weight:700; font-size:1.02rem; }
-  .live-dot{
+  .brand-name{ font-family:'Bebas Neue',sans-serif; font-size:1.4rem; letter-spacing:0.06em; color:var(--text); line-height:1; }
+  .brand-name span{ color: var(--red); }
+  .live-badge{
     display:inline-flex; align-items:center; gap:6px;
-    font-family:'JetBrains Mono',monospace; font-size:0.68rem;
-    color:var(--signal); letter-spacing:0.1em;
-    padding:4px 10px; border-radius:999px; border:1px solid var(--border);
-    background: var(--signal-dim);
+    font-family:'JetBrains Mono',monospace; font-size:0.66rem;
+    color: var(--text-dim); letter-spacing:0.1em;
+    padding:5px 10px; border-radius:5px; border:1px solid var(--border);
   }
-  .live-dot::before{
-    content:''; width:6px; height:6px; border-radius:50%; background:var(--signal);
-    box-shadow:0 0 8px var(--signal);
+  .live-badge::before{
+    content:''; width:6px; height:6px; border-radius:50%; background:var(--red);
+    box-shadow:0 0 8px var(--red);
     animation: pulse 1.6s ease-in-out infinite;
   }
-  @keyframes pulse{ 0%,100%{ opacity:1; transform:scale(1);} 50%{ opacity:0.4; transform:scale(0.7);} }
+  @keyframes pulse{ 0%,100%{ opacity:1;} 50%{ opacity:0.35;} }
 
   .search-row{ margin-top:16px; display:flex; gap:10px; flex-wrap:wrap; }
   .search-box{
     flex:1; min-width:220px;
     display:flex; align-items:center; gap:10px;
-    background: var(--panel); border:1px solid var(--border);
-    border-radius:12px; padding:11px 14px;
+    background: var(--surface); border:1px solid var(--border);
+    border-radius:10px; padding:11px 14px;
   }
-  .search-box svg{ width:16px; height:16px; flex:none; opacity:0.6; }
+  .search-box:focus-within{ border-color: var(--border-hover); }
+  .search-box svg{ width:16px; height:16px; flex:none; opacity:0.6; color:var(--text-dim); }
   .search-box input{
-    background:none; border:none; outline:none; color:var(--text);
-    font-family:'Inter',sans-serif; font-size:0.92rem; width:100%;
+    outline:none; font-size:0.92rem; width:100%; color:var(--text);
   }
   .search-box input::placeholder{ color:var(--text-dim); }
 
-  .tabs{ display:flex; gap:8px; }
+  .tabs{ display:flex; gap:4px; background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:4px; }
   .tab{
-    font-family:'Inter',sans-serif; font-size:0.86rem; font-weight:600;
-    color: var(--text-dim); background: var(--panel);
-    border:1px solid var(--border); border-radius:12px;
-    padding:11px 16px; cursor:pointer; white-space:nowrap;
+    font-size:0.86rem; font-weight:600; color: var(--text-dim);
+    border-radius:7px; padding:9px 15px; cursor:pointer; white-space:nowrap;
     transition: all .18s ease;
   }
-  .tab.active{ color:#04150F; background:var(--signal); border-color:var(--signal); }
-  .tab:not(.active):hover{ border-color:var(--border-hover); color:var(--text); }
+  .tab.active{ color:#fff; background: var(--red); }
+  .tab:not(.active):hover{ color:var(--text); }
 
-  /* content */
-  main{ padding: 26px clamp(16px,4vw,48px) 80px; max-width:1200px; margin:0 auto; }
+  /* ---------- content ---------- */
+  main{ padding: 24px clamp(16px,4vw,48px) 70px; max-width:900px; margin:0 auto; }
   .section-label{
     display:flex; align-items:center; justify-content:space-between;
     margin-bottom:14px; color:var(--text-dim); font-size:0.82rem;
   }
-  .section-label .mono{ color:var(--text-dim); }
 
-  .grid{
-    display:grid; grid-template-columns: repeat(auto-fill, minmax(190px,1fr));
-    gap:10px;
-  }
-  .item{
-    display:flex; align-items:center; gap:10px;
-    background: var(--panel); border:1px solid var(--border);
-    border-radius:12px; padding:13px 14px; cursor:pointer;
-    transition: border-color .15s ease, transform .15s ease, background .15s ease;
-    text-align:left;
-  }
-  .item:hover{ border-color:var(--border-hover); background:rgba(0,217,163,0.06); transform:translateY(-1px); }
-  .item.active{ border-color:var(--signal); background:var(--signal-dim); }
-  .item .flag{ font-size:1.3rem; flex:none; }
-  .item .dot-icon{
-    width:8px; height:8px; border-radius:50%; flex:none;
-    background: var(--amber);
-  }
-  .item-name{ font-size:0.9rem; font-weight:500; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-  .item-sub{ font-size:0.72rem; color:var(--text-dim); font-family:'JetBrains Mono',monospace; }
+  .list{ display:flex; flex-direction:column; gap:10px; }
 
-  .empty{ color:var(--text-dim); font-size:0.9rem; padding:40px 0; text-align:center; }
-  .skeleton{ opacity:0.5; }
+  .card{
+    background: var(--surface);
+    border:1px solid var(--border);
+    border-radius: var(--radius);
+    padding:16px;
+    transition: border-color .15s ease;
+  }
+  .card:hover{ border-color: var(--border-hover); }
 
-  /* result panel */
-  .result-panel{
-    position:fixed; left:0; right:0; bottom:-320px;
-    z-index:50; transition: bottom .35s cubic-bezier(.2,.9,.25,1);
-    display:flex; justify-content:center; padding: 0 16px;
+  .card-top{ display:flex; align-items:center; gap:12px; margin-bottom:12px; }
+  .flag{ font-size:1.5rem; flex:none; line-height:1; }
+  .icon-dot{
+    width:34px; height:34px; border-radius:9px; flex:none;
+    background: var(--red-dim); border:1px solid var(--border);
+    display:flex; align-items:center; justify-content:center;
   }
-  .result-panel.show{ bottom:20px; }
-  .result-card{
-    width:100%; max-width:680px;
-    background: var(--panel-solid); border:1px solid var(--border-hover);
-    border-radius:16px; padding:20px;
-    box-shadow: 0 24px 60px -20px rgba(0,0,0,0.7);
+  .icon-dot svg{ width:16px; height:16px; color:var(--gold); }
+  .card-title{ font-size:1rem; font-weight:700; color:var(--text); }
+  .card-sub{ font-size:0.72rem; color:var(--text-dim); font-family:'JetBrains Mono',monospace; letter-spacing:0.05em; text-transform:uppercase; margin-top:2px; }
+
+  .url-row{
+    display:flex; align-items:center; gap:8px;
+    background: var(--surface-2); border:1px solid var(--border);
+    border-radius:8px; padding:9px 10px;
   }
-  .result-head{ display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
-  .result-head h3{ font-size:1rem; display:flex; align-items:center; gap:8px; }
-  .close-btn{ background:none; border:none; color:var(--text-dim); cursor:pointer; font-size:1.1rem; line-height:1; padding:4px; }
-  .close-btn:hover{ color:var(--text); }
-  .link-row{
-    display:flex; gap:8px; align-items:center;
-    background: rgba(255,255,255,0.04); border:1px solid var(--border);
-    border-radius:10px; padding:10px 12px;
-  }
-  .link-row input{
-    flex:1; background:none; border:none; outline:none; color:var(--signal);
-    font-family:'JetBrains Mono',monospace; font-size:0.82rem;
+  .url-label-wrap{ flex:1; min-width:0; }
+  .url-label{ font-size:0.68rem; color:var(--text-dim); letter-spacing:0.08em; margin-bottom:2px; }
+  .url-value{
+    font-family:'JetBrains Mono',monospace; font-size:0.78rem; color: var(--gold);
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis; display:block;
   }
   .copy-btn{
-    flex:none; background: var(--signal); color:#04150F; border:none;
-    font-weight:700; font-size:0.82rem; padding:9px 14px; border-radius:8px;
-    cursor:pointer; transition: transform .12s ease;
+    flex:none; background: var(--red); color:#fff; font-weight:700;
+    font-size:0.78rem; padding:9px 14px; border-radius:6px; cursor:pointer;
+    transition: transform .12s ease, background .2s ease;
   }
-  .copy-btn:active{ transform:scale(0.95); }
-  .copy-btn.copied{ background:var(--amber); }
-  .result-actions{ display:flex; gap:10px; margin-top:12px; }
-  .open-link{ font-size:0.82rem; color:var(--text-dim); }
-  .open-link:hover{ color:var(--signal); }
+  .copy-btn:active{ transform:scale(0.94); }
+  .copy-btn.copied{ background:#2E9E5B; }
+
+  .empty{ color:var(--text-dim); font-size:0.9rem; padding:40px 0; text-align:center; }
 
   footer{
-    text-align:center; padding:28px 16px 50px; color:var(--text-dim); font-size:0.8rem;
+    text-align:center; padding:26px 16px 46px; color:var(--text-dim); font-size:0.8rem;
     border-top:1px solid var(--border);
   }
-  footer a{ color:var(--signal); }
+  footer a{ color: var(--red); text-decoration:none; }
+  footer a:hover{ text-decoration:underline; }
 
   @media (max-width:600px){
     .header-top{ flex-direction:column; align-items:flex-start; }
-    .grid{ grid-template-columns: repeat(auto-fill, minmax(150px,1fr)); }
+    .brand-name{ font-size:1.25rem; }
   }
 </style>
 </head>
@@ -179,10 +175,10 @@
 <header>
   <div class="header-top">
     <div class="brand">
-      <div class="brand-mark"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="12" rx="2" stroke="#04150F" stroke-width="1.8"/><path d="M8 21h8M12 17v4" stroke="#04150F" stroke-width="1.8" stroke-linecap="round"/></svg></div>
-      <span class="brand-name">Channel Directory</span>
+      <div class="brand-mark"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="12" rx="2" stroke="#fff" stroke-width="1.8"/><path d="M8 21h8M12 17v4" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+      <span class="brand-name">CHANNEL<span>DIRECTORY</span></span>
     </div>
-    <span class="live-dot">SOURCE: LIVE PUBLIC DATA</span>
+    <span class="live-badge">LIVE PUBLIC DATA</span>
   </div>
 
   <div class="search-row">
@@ -190,20 +186,22 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
       <input id="searchInput" type="text" placeholder="Search country, language or category…">
     </div>
+  </div>
+  <div class="search-row">
     <div class="tabs" id="tabs">
-      <button class="tab active" data-tab="countries">🌍 Countries</button>
-      <button class="tab" data-tab="languages">🗣 Languages</button>
-      <button class="tab" data-tab="categories">📺 Categories</button>
+      <button class="tab active" data-tab="countries">Countries</button>
+      <button class="tab" data-tab="languages">Languages</button>
+      <button class="tab" data-tab="categories">Categories</button>
     </div>
   </div>
 </header>
 
 <main>
   <div class="section-label">
-    <span id="sectionTitle">Tap a country to get its playlist link</span>
+    <span id="sectionTitle">Copy a country's playlist link</span>
     <span class="mono" id="countLabel"></span>
   </div>
-  <div class="grid" id="grid">
+  <div class="list" id="list">
     <div class="empty">Loading…</div>
   </div>
 </main>
@@ -211,22 +209,6 @@
 <footer>
   Playlist data and stream links are pulled live from the open-source <a href="https://github.com/iptv-org/iptv" target="_blank" rel="noopener">iptv-org/iptv</a> project — a public directory of freely available broadcasts. This page only helps you find and copy the right link.
 </footer>
-
-<div class="result-panel" id="resultPanel">
-  <div class="result-card">
-    <div class="result-head">
-      <h3 id="resultTitle">—</h3>
-      <button class="close-btn" id="closeResult">✕</button>
-    </div>
-    <div class="link-row">
-      <input id="resultUrl" type="text" readonly>
-      <button class="copy-btn" id="copyBtn">Copy</button>
-    </div>
-    <div class="result-actions">
-      <a class="open-link" id="openLink" href="#" target="_blank" rel="noopener">Open playlist in new tab ↗</a>
-    </div>
-  </div>
-</div>
 
 <script>
 const API = {
@@ -238,40 +220,37 @@ const BASE = 'https://iptv-org.github.io/iptv';
 
 let state = { tab: 'countries', data: { countries: [], languages: [], categories: [] }, loaded: {} };
 
-const grid = document.getElementById('grid');
+const list = document.getElementById('list');
 const sectionTitle = document.getElementById('sectionTitle');
 const countLabel = document.getElementById('countLabel');
 const searchInput = document.getElementById('searchInput');
 
 const titles = {
-  countries: 'Tap a country to get its playlist link',
-  languages: 'Tap a language to get its playlist link',
-  categories: 'Tap a category to get its playlist link'
+  countries: "Copy a country's playlist link",
+  languages: "Copy a language's playlist link",
+  categories: "Copy a category's playlist link"
 };
+
+const tvIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M8 21h8M12 17v4"/></svg>`;
+const langIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16M4 12h10M4 17h13"/></svg>`;
 
 async function loadTab(tab){
   if(state.loaded[tab]){ render(); return; }
-  grid.innerHTML = '<div class="empty">Loading…</div>';
+  list.innerHTML = '<div class="empty">Loading…</div>';
   try{
     const res = await fetch(API[tab]);
     const json = await res.json();
     if(tab === 'countries'){
-      state.data.countries = json
-        .filter(c => c.name && c.code)
-        .sort((a,b)=>a.name.localeCompare(b.name));
+      state.data.countries = json.filter(c => c.name && c.code).sort((a,b)=>a.name.localeCompare(b.name));
     } else if(tab === 'languages'){
-      state.data.languages = json
-        .filter(l => l.name && l.code)
-        .sort((a,b)=>a.name.localeCompare(b.name));
+      state.data.languages = json.filter(l => l.name && l.code).sort((a,b)=>a.name.localeCompare(b.name));
     } else if(tab === 'categories'){
-      state.data.categories = json
-        .filter(c => c.id && c.name)
-        .sort((a,b)=>a.name.localeCompare(b.name));
+      state.data.categories = json.filter(c => c.id && c.name).sort((a,b)=>a.name.localeCompare(b.name));
     }
     state.loaded[tab] = true;
     render();
   }catch(e){
-    grid.innerHTML = '<div class="empty">Could not load this list right now. Check your connection and reload the page.</div>';
+    list.innerHTML = '<div class="empty">Could not load this list right now. Check your connection and reload the page.</div>';
   }
 }
 
@@ -282,83 +261,78 @@ function render(){
   let items = [];
 
   if(tab === 'countries'){
-    items = state.data.countries
-      .filter(c => c.name.toLowerCase().includes(q))
-      .map(c => ({
-        label: c.name,
-        sub: c.code,
-        flag: c.flag || '🏳',
-        url: `${BASE}/countries/${c.code.toLowerCase()}.m3u`
-      }));
+    items = state.data.countries.filter(c => c.name.toLowerCase().includes(q)).map(c => ({
+      label: c.name, sub: c.code, flag: c.flag || '🏳', icon: null,
+      url: `${BASE}/countries/${c.code.toLowerCase()}.m3u`
+    }));
   } else if(tab === 'languages'){
-    items = state.data.languages
-      .filter(l => l.name.toLowerCase().includes(q))
-      .map(l => ({
-        label: l.name,
-        sub: l.code,
-        flag: null,
-        url: `${BASE}/languages/${l.code}.m3u`
-      }));
+    items = state.data.languages.filter(l => l.name.toLowerCase().includes(q)).map(l => ({
+      label: l.name, sub: l.code, flag: null, icon: langIcon,
+      url: `${BASE}/languages/${l.code}.m3u`
+    }));
   } else if(tab === 'categories'){
-    items = state.data.categories
-      .filter(c => c.name.toLowerCase().includes(q))
-      .map(c => ({
-        label: c.name,
-        sub: c.id,
-        flag: null,
-        url: `${BASE}/categories/${c.id}.m3u`
-      }));
+    items = state.data.categories.filter(c => c.name.toLowerCase().includes(q)).map(c => ({
+      label: c.name, sub: c.id, flag: null, icon: tvIcon,
+      url: `${BASE}/categories/${c.id}.m3u`
+    }));
   }
 
   countLabel.textContent = items.length ? `${items.length} results` : '';
 
   if(!items.length){
-    grid.innerHTML = '<div class="empty">No matches. Try a different search term.</div>';
+    list.innerHTML = '<div class="empty">No matches. Try a different search term.</div>';
     return;
   }
 
-  grid.innerHTML = '';
+  list.innerHTML = '';
   const frag = document.createDocumentFragment();
-  items.forEach(it=>{
-    const btn = document.createElement('button');
-    btn.className = 'item';
-    btn.innerHTML = `
-      ${it.flag ? `<span class="flag">${it.flag}</span>` : `<span class="dot-icon"></span>`}
-      <span>
-        <div class="item-name">${it.label}</div>
-        <div class="item-sub">${it.sub}</div>
-      </span>
+  items.forEach((it, idx)=>{
+    const card = document.createElement('div');
+    card.className = 'card';
+    const iconHtml = it.flag
+      ? `<span class="flag">${it.flag}</span>`
+      : `<span class="icon-dot">${it.icon}</span>`;
+    card.innerHTML = `
+      <div class="card-top">
+        ${iconHtml}
+        <div>
+          <div class="card-title">${it.label}</div>
+          <div class="card-sub">${it.sub} CODE</div>
+        </div>
+      </div>
+      <div class="url-row">
+        <div class="url-label-wrap">
+          <div class="url-label">M3U PLAYLIST URL</div>
+          <span class="url-value" title="${it.url}">${it.url}</span>
+        </div>
+        <button class="copy-btn" data-url="${it.url}">Copy</button>
+      </div>
     `;
-    btn.addEventListener('click', ()=> openResult(it));
-    frag.appendChild(btn);
+    frag.appendChild(card);
   });
-  grid.appendChild(frag);
+  list.appendChild(frag);
 }
 
-function openResult(item){
-  document.getElementById('resultTitle').textContent = item.label;
-  const urlInput = document.getElementById('resultUrl');
-  urlInput.value = item.url;
-  document.getElementById('openLink').href = item.url;
-  document.getElementById('resultPanel').classList.add('show');
-}
-
-document.getElementById('closeResult').addEventListener('click', ()=>{
-  document.getElementById('resultPanel').classList.remove('show');
-});
-
-document.getElementById('copyBtn').addEventListener('click', async ()=>{
-  const input = document.getElementById('resultUrl');
-  const btn = document.getElementById('copyBtn');
+list.addEventListener('click', async (e)=>{
+  const btn = e.target.closest('.copy-btn');
+  if(!btn) return;
+  const url = btn.dataset.url;
   try{
-    await navigator.clipboard.writeText(input.value);
-  }catch(e){
-    input.select();
+    await navigator.clipboard.writeText(url);
+  }catch(err){
+    const ta = document.createElement('textarea');
+    ta.value = url;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
     document.execCommand('copy');
+    document.body.removeChild(ta);
   }
+  const original = btn.textContent;
   btn.textContent = 'Copied ✓';
   btn.classList.add('copied');
-  setTimeout(()=>{ btn.textContent='Copy'; btn.classList.remove('copied'); }, 1600);
+  setTimeout(()=>{ btn.textContent = original; btn.classList.remove('copied'); }, 1500);
 });
 
 document.getElementById('tabs').addEventListener('click', (e)=>{
@@ -377,5 +351,4 @@ loadTab('countries');
 </script>
 
 </body>
-  </html>
-  
+</html>
