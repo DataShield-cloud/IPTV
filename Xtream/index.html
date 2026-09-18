@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><style>
+@font-face {
+  font-family: "Optimistic";
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url("/fonts/OptimisticAI_VF_Optimized.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Optimistic Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/OptimisticMono_W_TextRegular.woff2") format("woff2");
+}
+:where(html) {
+  font-family: "Optimistic", system-ui, sans-serif;
+}
+:where(code, pre, kbd, samp) {
+  font-family: "Optimistic Mono", ui-monospace, monospace;
+}
+</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OTTXTREAM - Premium IPTV</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#08090f;--card:#141625;--card2:#1c1e33;--red:#e50914;--muted:#8d93b1;--green:#00e676}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:#fff;font-family:'Inter',sans-serif}
+.header{padding:16px 5%;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10;background:rgba(8,9,15,0.85);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.06)}
+.logo{font-family:'Outfit',sans-serif;font-size:24px;font-weight:800;letter-spacing:-0.5px}.logo span{color:var(--red)}
+.hero{padding:70px 5% 30px;background:radial-gradient(900px 500px at 15% 0%, #221a5a 0%, transparent 60%), radial-gradient(600px 400px at 90% 10%, #5a1018 0%, transparent 60%), linear-gradient(180deg, rgba(0,0,0,0.3) 0%, var(--bg) 100%), url('https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=1920') center/cover;position:relative}
+.hero::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg, var(--bg) 10%, transparent 70%)}
+.hero-in{position:relative;z-index:2;max-width:700px}
+.badge{display:inline-block;background:rgba(229,9,20,0.18);border:1px solid rgba(229,9,20,0.35);color:#ff7a7a;padding:6px 14px;border-radius:20px;font-size:11px;letter-spacing:1px;font-weight:700}
+.hero h1{font-family:'Outfit',sans-serif;font-size:clamp(32px,6vw,54px);line-height:0.95;margin:14px 0}
+.hero h1 span{color:var(--red)}
+.hero p{color:var(--muted);line-height:1.6;margin-bottom:20px}
+.btn{padding:12px 20px;border-radius:10px;border:none;font-weight:700;cursor:pointer}
+.btn-red{background:var(--red);color:#fff;box-shadow:0 8px 22px rgba(229,9,20,0.45)}
+.btn-dark{background:rgba(255,255,255,0.08);color:#fff;border:1px solid rgba(255,255,255,0.12)}
+.wrap{padding:30px 5%}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:18px}
+.card{background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid rgba(255,255,255,0.07);border-radius:20px;padding:20px;transition:0.25s}
+.card:hover{transform:translateY(-4px);border-color:rgba(229,9,20,0.35);box-shadow:0 18px 40px rgba(0,0,0,0.6)}
+.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+.tag{background:rgba(124,92,255,0.15);border:1px solid rgba(124,92,255,0.3);color:#a99bff;padding:6px 12px;border-radius:20px;font-size:12px;font-weight:700}
+.views{display:flex;align-items:center;gap:6px;color:var(--muted);font-size:13px}
+.field{margin-bottom:12px}
+.field small{color:var(--muted);font-size:11px;letter-spacing:1px;text-transform:uppercase}
+.box{display:flex;justify-content:space-between;align-items:center;background:#0d0e1a;border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:12px 12px;margin-top:5px;font-family:monospace;font-size:14px;word-break:break-all}
+.copybtn{background:rgba(255,255,255,0.09);border:none;color:#fff;padding:7px 10px;border-radius:8px;cursor:pointer;margin-left:10px}
+.copybtn:hover{background:var(--red)}
+.actions{display:flex;gap:10px;margin-top:16px}.actions button{flex:1}
+.disclaimer{margin-top:28px;padding:16px;text-align:center;background:rgba(255,255,255,0.03);border:1px dashed rgba(255,255,255,0.1);border-radius:14px;color:var(--muted);font-size:12px;line-height:1.6}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(120px);background:#fff;color:#000;padding:11px 18px;border-radius:24px;font-weight:700;font-size:13px;transition:0.35s;z-index:99}.toast.show{transform:translateX(-50%) translateY(0)}
+footer{text-align:center;padding:24px;color:var(--muted);font-size:11px;border-top:1px solid rgba(255,255,255,0.06);margin-top:20px}
+</style>
+</head>
+<body>
+<div class="header"><div class="logo">OTT<span>XTREAM</span></div><div style="font-size:12px;color:var(--green)">● LIVE • 3 ACCOUNTS</div></div>
+<div class="hero"><div class="hero-in"><div class="badge">PREMIUM IPTV SHARE</div><h1>Unlimited <span>OTT</span> Entertainment</h1><p>Copy of iptv-share.maxroom.uk - Same 3 Xtream Accounts in Netflix style UI. Works on IPTV Smarters, TiviMate, VLC.</p><div style="display:flex;gap:10px"><button class="btn btn-red" onclick="document.getElementById('list').scrollIntoView({behavior:'smooth'})">View Accounts</button><button class="btn btn-dark">4K • LIVE • VOD</button></div></div></div>
+
+<div class="wrap" id="list">
+<div class="grid">
+<div class="card">
+<div class="top"><span class="tag">SERVER #1</span><span class="views">👁 0</span></div>
+<div class="field"><small>HOST</small><div class="box"><span id="h1">http://135.125.132.93:80</span><button class="copybtn" onclick="copyId('h1')">⎙</button></div></div>
+<div class="field"><small>USERNAME</small><div class="box"><span id="u1">vip1</span><button class="copybtn" onclick="copyId('u1')">⎙</button></div></div>
+<div class="field"><small>PASSWORD</small><div class="box"><span id="p1">vip@123</span><button class="copybtn" onclick="copyId('p1')">⎙</button></div></div>
+<div class="actions"><button class="btn btn-red" onclick="copyAll(1)">Copy Full</button><button class="btn btn-dark" onclick="copyId('h1')">Copy Host</button></div>
+</div>
+
+<div class="card">
+<div class="top"><span class="tag">SERVER #2</span><span class="views">👁 0</span></div>
+<div class="field"><small>HOST</small><div class="box"><span id="h2">http://135.125.132.93:80</span><button class="copybtn" onclick="copyId('h2')">⎙</button></div></div>
+<div class="field"><small>USERNAME</small><div class="box"><span id="u2">free_1</span><button class="copybtn" onclick="copyId('u2')">⎙</button></div></div>
+<div class="field"><small>PASSWORD</small><div class="box"><span id="p2">free_1@123</span><button class="copybtn" onclick="copyId('p2')">⎙</button></div></div>
+<div class="actions"><button class="btn btn-red" onclick="copyAll(2)">Copy Full</button><button class="btn btn-dark" onclick="copyId('h2')">Copy Host</button></div>
+</div>
+
+<div class="card">
+<div class="top"><span class="tag">SERVER #3</span><span class="views">👁 0</span></div>
+<div class="field"><small>HOST</small><div class="box"><span id="h3">http://135.125.132.93:80</span><button class="copybtn" onclick="copyId('h3')">⎙</button></div></div>
+<div class="field"><small>USERNAME</small><div class="box"><span id="u3">demo1</span><button class="copybtn" onclick="copyId('u3')">⎙</button></div></div>
+<div class="field"><small>PASSWORD</small><div class="box"><span id="p3">demo1</span><button class="copybtn" onclick="copyId('p3')">⎙</button></div></div>
+<div class="actions"><button class="btn btn-red" onclick="copyAll(3)">Copy Full</button><button class="btn btn-dark" onclick="copyId('h3')">Copy Host</button></div>
+</div>
+</div>
+
+<div class="disclaimer">This content is collected from publicly available sources and third-party submissions. We do not own, host, or control the content and accept no liability for it.<br>OTT Theme Clone - Same 3 accounts from iptv-share.maxroom.uk</div>
+</div>
+<footer>© 2026 OTTXTREAM Clone • Made with ❤️ OTT Type Theme</footer>
+<div class="toast" id="toast">Copied!</div>
+<script>
+function copyId(id){const t=document.getElementById(id).innerText;navigator.clipboard.writeText(t);showToast('Copied: '+t)}
+function copyAll(n){const h=document.getElementById('h'+n).innerText;const u=document.getElementById('u'+n).innerText;const p=document.getElementById('p'+n).innerText;const full=`Host: ${h}\nUsername: ${u}\nPassword: ${p}`;navigator.clipboard.writeText(full);showToast('Account '+n+' copied!')}
+function showToast(m){const el=document.getElementById('toast');el.innerText=m;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2500)}
+</script>
+<script>(function(){var loc=location.href.replace(/#.*$/,"");var ATTR_NAMES=["data-product-id","data-productid","data-product_id","product-id","productid","product_id","data-source-entity-id","source-entity-id","source_entity_id","data-product","data-metadata","data-meta"];var DATASET_KEYS=["productId","productid","product_id","sourceEntityId","sourceentityid","source_entity_id","product","metadata","meta"];function readProductId(value){if(typeof value!=="string"||value.length===0)return null;if(/^[0-9]{6,}$/.test(value))return value;var match=value.match(/(?:product(?:_|-)?id|source(?:_|-)?entity(?:_|-)?id)["'=:\s]+([0-9]{6,})/i);return match?match[1]:null}function extractProductId(start){for(var node=start;node&&node!==document.body;node=node.parentElement){for(var i=0;i<ATTR_NAMES.length;i++){var attrValue=node.getAttribute&&node.getAttribute(ATTR_NAMES[i]);var attrProductId=readProductId(attrValue);if(attrProductId)return attrProductId}var dataset=node.dataset||null;if(dataset){for(var j=0;j<DATASET_KEYS.length;j++){var dataValue=dataset[DATASET_KEYS[j]];var dataProductId=readProductId(dataValue);if(dataProductId)return dataProductId}}}return null}function isInlineMediaSlotElement(node){return !!(node&&node.getAttribute&&node.getAttribute("data-clippy-inline-media-slot")!==null)}function findInlineMediaSlot(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(isInlineMediaSlotElement(node))return node}return null}function readInlineMediaUrl(node){if(!node)return null;return node.getAttribute&&((node.getAttribute("data-clippy-inline-media-url")||node.getAttribute("data-url")||node.getAttribute("data_url")))||node.href||null}function stripHash(url){return String(url).replace(/#.*$/,"")}function urlsMatch(a,b){if(!a||!b)return false;try{return stripHash(new URL(a,loc).href)===stripHash(new URL(b,loc).href)}catch(_){return stripHash(a)===stripHash(b)}}function isFirstPartyReelUrl(value){try{var url=new URL(value,loc);if(url.protocol!=="https:")return false;var host=url.hostname.toLowerCase();var supported=host==="instagram.com"||host.endsWith(".instagram.com")||host==="facebook.com"||host.endsWith(".facebook.com");return supported&&/\/reels?\//i.test(url.pathname)}catch(_){return false}}function isInlineMediaUrlClick(node,href){var slot=findInlineMediaSlot(node);if(!slot)return false;var slotUrl=readInlineMediaUrl(slot);if(slotUrl)return urlsMatch(href,slotUrl);return isFirstPartyReelUrl(href)}function findDataHref(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(node.getAttribute){var href=node.getAttribute("data-href")||node.getAttribute("data-url");if(href)return{href:href,node:node}}}return null}var nativeOpen=window.open;window.open=function(url){if(parent!==window&&typeof url==="string"&&/^https?:\/\//.test(url)){parent.postMessage({type:"ecto:usercontent-link-click",href:url},"*");return null}return nativeOpen?nativeOpen.apply(window,arguments):null};document.addEventListener("click",function(e){var target=e.target instanceof Element?e.target:null;if(!target)return;if(parent===window)return;var a=target.closest?target.closest("a[href]"):null;if(a&&a.href&&/^https?:\/\//.test(a.href)&&a.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(a,a.href))return;var productId=extractProductId(target)||extractProductId(a);if(productId){e.preventDefault();parent.postMessage({type:"ecto-artifact-link-click",productId:productId},"*");return}e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:a.href},"*");return}var dataHref=findDataHref(target);if(dataHref&&/^https?:\/\//.test(dataHref.href)&&dataHref.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(dataHref.node,dataHref.href))return;e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:dataHref.href},"*")}},true)})();</script><script>(function(){var FOCUS_TYPE="ecto:artifact-focus-request";var CLOSE_TYPE="ecto:artifact-close-request";function focusArtifactDocument(){var body=document.body;if(!body)return;try{window.focus();}catch(e){}if(!body.hasAttribute("tabindex"))body.setAttribute("tabindex","-1");try{body.focus({preventScroll:true});}catch(e){try{body.focus();}catch(e2){}}}window.addEventListener("message",function(event){if(event.source!==window.parent)return;var data=event.data;if(!data||typeof data!=="object"||data.type!==FOCUS_TYPE)return;if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",focusArtifactDocument,{once:true});return;}focusArtifactDocument();});window.addEventListener("keydown",function(event){if(event.key!=="Escape")return;window.setTimeout(function(){if(event.defaultPrevented)return;window.parent.postMessage({type:CLOSE_TYPE},"*");},0);});})();</script></body>
+                                                                                </html>
+                                                                                
